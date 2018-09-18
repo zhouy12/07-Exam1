@@ -2,8 +2,8 @@
 Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Michelle.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -88,7 +88,7 @@ def problem3(point, length, delta, window):
       :type window:  rg.RoseWindow
     """
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     # TODO (continued):  IMPORTANT: Use this ITERATIVE ENHANCEMENT PLAN:
     # TODO (continued):    1. Make the sole VERTICAL line appear,
     # TODO (continued):         with thickness 3.
@@ -102,6 +102,34 @@ def problem3(point, length, delta, window):
     # TODO (continued):         and colors per the specified pattern.
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
+
+    p1 = rg.Point(point.x, point.y)
+    p2 = rg.Point(point.x, point.y + length)
+    line = rg.Line(p1, p2)
+    line.color = 'black'
+    line.thickness = 3
+    line.attach_to(window)
+
+    p3 = rg.Point(point.x + length, point.y)
+    line2 = rg.Line(p1, p3)
+    line2.attach_to(window)
+
+    for k in range(9):
+        p1.y = p1.y + delta
+        p3.y = p3.y + delta
+        p3.x = p3.x + 20
+        line = rg.Line(p1, p3)
+        for k in range(9):
+            if ((k + 1) % 3 == 0):
+                line.color = 'magenta'
+            if ((k + 1) % 3 == 1):
+                line.color = 'cyan'
+            if ((k + 1) % 3 == 2):
+                line.color = 'spring green'
+        line.attach_to(window)
+
+    window.render()
+
 
 
 # ----------------------------------------------------------------------
